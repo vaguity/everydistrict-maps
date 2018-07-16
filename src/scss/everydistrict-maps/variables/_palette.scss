@@ -1,0 +1,18 @@
+$black: #000;
+$white: #fff;
+$gray: #ccc;
+
+$highlight: #00f;
+$highlight-alt: #00f;
+
+// palette notes:
+
+// This is good. I think it makes sense to keep the state map red/blue (unless ED wants something different).
+
+// My gut on the national map: gray-out (light-gray/blue shade of the blue that's in there now) the states that are not active, and then use the blue from their branding for the states that are clickable.
+
+// These are the two blues I've been using:
+// New Branding Blue: #61BFE0
+// Darker, Alternate Blue: #408DD3
+
+// Perhaps use #61BFE0 as the base color for clickable states, and #408DD3 as the rollover/highlight state.

@@ -1,0 +1,30 @@
+@mixin link($primary-color: $highlight, $secondary-color: $highlight-alt, $border: true) {
+    color: $primary-color;
+    text-decoration: none;
+    $border-primary-color: transparent;
+    $border-secondary-color: transparent;
+    @if $border {
+        border-color: $primary-color;
+        $border-primary-color: $primary-color;
+        $border-secondary-color: $secondary-color;
+    }
+    @if $primary-color == $highlight-alt and $secondary-color == $highlight-alt {
+        $secondary-color: $highlight;
+    }
+    &:link {
+        color: $primary-color;
+        border-color: $border-primary-color;
+    }
+    &:visited {
+        color: $primary-color;
+        border-color: $border-primary-color;
+    }
+    &:hover {
+        color: $secondary-color;
+        border-color: $border-secondary-color;
+    }
+    &:active {
+        color: $secondary-color;
+        border-color: $border-secondary-color;
+    }
+}

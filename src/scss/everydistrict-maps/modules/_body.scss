@@ -1,0 +1,40 @@
+// body {
+//     font-family: $type-base;
+// }
+
+// .content {
+//     margin: 0 10px;
+//     @include breakpoint($breakpoint-medium) {
+//         margin: 0 40px;
+//     }
+// }
+
+.map, .state-map {
+    @include breakpoint($breakpoint-medium) {
+        @include span(8 of 12);
+    }
+}
+
+.map-info {
+    @include breakpoint($breakpoint-medium) {
+        @include span(4 of 12 last);
+    }
+}
+
+.map-info .state, .map-info .district {
+    display: none;
+    &.active {
+        display: block;
+    }
+}
+
+path {
+    stroke-width: 1px;
+    stroke: white;
+    fill: steelblue;
+    cursor: pointer;
+}
+
+path:hover, path.highlighted {
+    fill: gold;
+}
