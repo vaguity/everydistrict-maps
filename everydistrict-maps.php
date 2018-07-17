@@ -60,7 +60,6 @@ function everydistrictm_map_metabox() {
     ) );
 
     $cmb->add_field( array(
-        // 'name' => '',
         'desc'              => __( 'Select map to use.' ),
         'id'                => $prefix . 'map',
         'type'              => 'select',
@@ -135,11 +134,8 @@ function everydistrictm_everydistrictm_map_content( $content ) {
         include('single-everydistrictm_map.php');
 
         $map_content = everydistrictm_map_template();
-
         $content = $content . $map_content;
     }
 
     return $content;
-}
-
-?>
+} ?>
