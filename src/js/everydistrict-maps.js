@@ -3,12 +3,48 @@ $(window).on('load', function () {
     // TODO: Set fallbacks for these initializing variables
     var mapID = $('#everydistrictm-map').data('map-id')
     var mapGeoJSON = $('#everydistrictm-map').data('map-geojson-file')
-    var mapDataFile = $('.everydistrictm-map-container').data('map-data-file')
+    var mapDataFile = $('#everydistrictm-map').data('map-data-file')
 
     // Map dimensions for mobile, in pixels
     var width = 400
     var height = 250
     var scale = 500
+
+    var setMapSettings = function (mapID) {
+        var mapSettings = {}
+        var mapSizes = {
+            'az': {
+                'scale': 4760.200189536459,
+                'center': [-111.93086650000001,34.215924556828945],
+            },
+            'fl': {
+                'scale': 4000,
+                'center': [-83.83314999999999,27.810256323581516],
+            },
+            'mi': {
+                'scale': 3433.9551403171313,
+                'center': [-86.41580499999999,45.06094578377876],
+            },
+            'oh': {
+                'scale': 0,
+                'center': [],
+            },
+            'pa': {
+                'scale': 0,
+                'center': [],
+            },
+            'us': {
+                'scale': 1000,
+                'center': [],
+            }
+        }
+        // Split first two characters from mapID
+        var mapState = mapID.substring(0, 2)
+        if (mapState in mapSizes) {
+            mapSettings = mapSizes[mapState]
+        }
+        return mapSettings
+    }
 
     var drawMap = function (desktop) {
         if (desktop === true) {
@@ -24,26 +60,36 @@ $(window).on('load', function () {
 
         $('#everydistrictm-map').empty()
 
+        var mapSettings = setMapSettings(mapID)
+
         // Map projection
-        var projection = d3.geo.albersUsa()
-            .scale(scale)
-            .translate([width / 2, height / 2]) // translate to center the map in view
+        if (mapID === 'us') {
+            var projection = d3.geo.albersUsa()
+                .scale(scale)
+                .translate([width / 2, height / 2]) // translate to center the map in view
+        }
+        else {
+            var projection = d3.geo.mercator()
+                .scale(scale)
+                .center(mapSettings['center'])
+                .translate([width / 2, height / 2]) //translate to center the map in view
+        }
 
         // Generate paths based on projection
         var path = d3.geo.path()
             .projection(projection)
 
         // Create an SVG
-        var svg = d3.select('#map').append('svg')
+        var svg = d3.select('#everydistrictm-map').append('svg')
             .attr('width', width)
             .attr('height', height);
 
-        //Group for the map features
+        // Group for the map features
         var features = svg.append('g')
             .attr('class', 'features');
 
         var color = d3.scale.linear()
-            .domain([0,1])
+            .domain([0, 1])
             .range(['steelBlue', 'orange']);
 
         var highlightCheck = function (highlighted) {
@@ -58,7 +104,7 @@ $(window).on('load', function () {
         d3.csv(mapDataFile, function(error, data) {
             if (error) return console.log(error) // unknown error, check the console
 
-            d3.json('assets/geojson/us-states.geojson', function(error, json) {
+            d3.json(mapGeoJSON, function(error, json) {
                 if (error) return console.log(error) // unknown error, check the console
 
                 for (var i = 0; i < data.length; i++) {

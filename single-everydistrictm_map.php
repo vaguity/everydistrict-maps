@@ -9,9 +9,8 @@ function everydistrictm_map_template() {
     // Stringify the returned content
 
     $content = '<div class="everydistrictm-map-container everydistrictm-map-container-' . $everydistrictm_map_map . '">
-        <div id="everydistrictm-map" class="everydistrictm-map-' . $everydistrictm_map_map . '" data-map-id="' . $everydistrictm_map_map . '" data-map-data-file="' . $everydistrictm_map_data_file . '" data-map-geojson-file="' . plugin_dir_url( __FILE__ ) . 'src/geojson/us.geojson"></div>
+        <div id="everydistrictm-map" class="everydistrictm-map-' . $everydistrictm_map_map . '" data-map-id="' . $everydistrictm_map_map . '" data-map-data-file="' . $everydistrictm_map_data_file . '" data-map-geojson-file="' . plugin_dir_url( __FILE__ ) . 'src/geojson/' . $everydistrictm_map_map . '.geojson">(Loading)</div>
         <script src="' . plugin_dir_url( __FILE__ ) . 'dist/js/everydistrict-maps.js"></script>';
-        // Get post metadata to load specific JS
         // Loop through repeatable districts
         foreach ( (array) $everydistrictm_district_districts as $everydistrictm_district_key => $everydistrictm_district_district ) {
 
@@ -20,7 +19,6 @@ function everydistrictm_map_template() {
                 <div class="everydistrict-district-information">' . wpautop( $everydistrictm_district_district['district_information'] ) . '</div>
             </div>';
         }
-        $content .= '<p>Map template loaded</p></div>';
 
     return $content;
 } ?>
