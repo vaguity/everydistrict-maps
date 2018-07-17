@@ -11,7 +11,10 @@ $(window).on('load', function () {
     var scale = 500
 
     var setMapSettings = function (mapID) {
-        var mapSettings = {}
+        var mapSettings = {
+            'scale': 3000,
+            'center': [-111.93086650000001,34.215924556828945],
+        }
         var mapSizes = {
             'az': {
                 'scale': 4760.200189536459,
@@ -47,20 +50,20 @@ $(window).on('load', function () {
     }
 
     var drawMap = function (desktop) {
+        var mapSettings = setMapSettings(mapID)
+
         if (desktop === true) {
             width = 800
             height = 500
-            scale = 1000
+            scale = mapSettings['scale']
         }
         else {
             width = 400
             height = 250
-            scale = 500
+            scale = mapSettings['scale'] / 2
         }
 
         $('#everydistrictm-map').empty()
-
-        var mapSettings = setMapSettings(mapID)
 
         // Map projection
         if (mapID === 'us') {
@@ -98,6 +101,18 @@ $(window).on('load', function () {
             }
             else {
                 return color(0)
+            }
+        }
+
+        var colorCheck = function (status) {
+            if (typeof(status) !== 'undefined') {
+                console.log(status)
+                console.log(color(status))
+                return color(status)
+            }
+            else {
+                console.log('fallback color')
+                return color(4)
             }
         }
 
