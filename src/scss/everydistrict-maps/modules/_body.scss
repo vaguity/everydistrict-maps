@@ -1,32 +1,31 @@
-// body {
-//     font-family: $type-base;
-// }
+.everydistrictm-district-data {
+    display: none;
+}
 
-// .content {
-//     margin: 0 10px;
+.everydistrictm-district-infobox {
+    &.active {
+        background: red;
+    }
+}
+
+// .map, .state-map {
 //     @include breakpoint($breakpoint-medium) {
-//         margin: 0 40px;
+//         @include span(8 of 12);
 //     }
 // }
 
-.map, .state-map {
-    @include breakpoint($breakpoint-medium) {
-        @include span(8 of 12);
-    }
-}
+// .map-info {
+//     @include breakpoint($breakpoint-medium) {
+//         @include span(4 of 12 last);
+//     }
+// }
 
-.map-info {
-    @include breakpoint($breakpoint-medium) {
-        @include span(4 of 12 last);
-    }
-}
-
-.map-info .state, .map-info .district {
-    display: none;
-    &.active {
-        display: block;
-    }
-}
+// .map-info .state, .map-info .district {
+//     display: none;
+//     &.active {
+//         display: block;
+//     }
+// }
 
 path {
     stroke-width: 1px;

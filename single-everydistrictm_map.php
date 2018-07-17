@@ -9,16 +9,24 @@ function everydistrictm_map_template() {
     // Stringify the returned content
 
     $content = '<div class="everydistrictm-map-container everydistrictm-map-container-' . $everydistrictm_map_map . '">
-        <div id="everydistrictm-map" class="everydistrictm-map-' . $everydistrictm_map_map . '" data-map-id="' . $everydistrictm_map_map . '" data-map-data-file="' . $everydistrictm_map_data_file . '" data-map-geojson-file="' . plugin_dir_url( __FILE__ ) . 'src/geojson/' . $everydistrictm_map_map . '.geojson">(Loading)</div>
+        <div id="everydistrictm-map" class="everydistrictm-map-' . $everydistrictm_map_map . '" data-map-id="' . $everydistrictm_map_map . '" data-map-data-file="' . $everydistrictm_map_data_file . '" data-map-geojson-file="' . plugin_dir_url( __FILE__ ) . 'src/geojson/' . $everydistrictm_map_map . '.geojson">(Loading map data.)</div>
         <script src="' . plugin_dir_url( __FILE__ ) . 'dist/js/everydistrict-maps.js"></script>';
+
+    $content .= '</div>
+        <div class="everydistrictm-map-information"></div>
+        <div class="everydistrictm-district-information">';
+
         // Loop through repeatable districts
         foreach ( (array) $everydistrictm_district_districts as $everydistrictm_district_key => $everydistrictm_district_district ) {
 
-            $content .= '<div class="everydistrict-district everydistrict-district-' . $everydistrictm_district_district['district_id'] . '">
-                <h3>' . $everydistrictm_district_district['district_name'] . '</h3>
-                <div class="everydistrict-district-information">' . wpautop( $everydistrictm_district_district['district_information'] ) . '</div>
+            $content .= '<div class="everydistrictm-district-data everydistrictm-district-data-' . $everydistrictm_district_district['district_id'] . '" data-district-data-id="' . $everydistrictm_district_district['district_id'] . '" style="display: none;">
+                <div class="everydistrictm-district-data-information">' . wpautop( $everydistrictm_district_district['district_information'] ) . '</div>
             </div>';
         }
+
+    $content .= '</div>';
+
+
 
     return $content;
 } ?>

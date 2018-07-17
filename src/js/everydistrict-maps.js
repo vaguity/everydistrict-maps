@@ -1,9 +1,24 @@
 $(window).on('load', function () {
 
+    var MAP_NAMES = {
+        'us': 'U.S.',
+        'az-house': 'Arizona House',
+        'az-senate': 'Arizona Senate',
+        'fl-senate': 'Florida Senate',
+        'mi-senate': 'Michigan Senate',
+        'oh-senate': 'Ohio Senate',
+        'pa-house': 'Pennsylvania House',
+    }
+
     // TODO: Set fallbacks for these initializing variables
     var mapID = $('#everydistrictm-map').data('map-id')
     var mapGeoJSON = $('#everydistrictm-map').data('map-geojson-file')
     var mapDataFile = $('#everydistrictm-map').data('map-data-file')
+    var mapName = ''
+
+    if (mapID in MAP_NAMES) {
+        var mapName = MAP_NAMES[mapID]
+    }
 
     // Map dimensions for mobile, in pixels
     var width = 400
@@ -46,6 +61,7 @@ $(window).on('load', function () {
     }
 
     var drawMap = function (desktop) {
+        console.log('drawmap has run')
         var mapSettings = setMapSettings(mapID)
 
         if (desktop === true) {
@@ -102,12 +118,12 @@ $(window).on('load', function () {
 
         var colorCheck = function (status) {
             if (typeof(status) !== 'undefined') {
-                console.log(status)
-                console.log(color(status))
+                // console.log(status)
+                // console.log(color(status))
                 return color(status)
             }
             else {
-                console.log('fallback color')
+                // console.log('fallback color')
                 return color(4)
             }
         }
@@ -122,16 +138,21 @@ $(window).on('load', function () {
                     // Grab district
                     var dataDistrict = data[i].District;
 
-                    // Grab data value
+                    // Grab data values
                     var dataHighlighted = data[i].Highlighted;
-
                     var dataStatus = data[i].Status;
 
-                    // Copy data to info boxes
-                    $('.district.fl-' + dataDistrict + ' .incumbent').text(data[i].Incumbent)
-                    $('.district.fl-' + dataDistrict + ' .ldi').text('LDI: ' + data[i].LDI)
+                    // Get copy from page element
+                    var dataDistrictCopy = ''
 
-                    // Find the corresponding state inside the GeoJSON
+                    if ($('.everydistrictm-district-data-' + dataDistrict + ' .everydistrictm-district-data-information').length) {
+                        var dataDistrictCopy = $('.everydistrictm-district-data-' + dataDistrict + ' .everydistrictm-district-data-information').html()
+                    }
+
+                    // TODO: Prevent this from creating three copies each time
+                    $('.everydistrictm-map-information').append('<div class="everydistrictm-district-infobox everydistrictm-district-infobox-' + dataDistrict + '"><h3 class="everydistrictm-district-infobox-name">' + mapName + ' District ' + dataDistrict + '</h3><ul><li class="everydistrictm-district-infobox-incumbent">' + data[i].Incumbent + '</li><li class="everydistrictm-district-infobox-ldi">' + data[i].LDI + '</li></ul><div class="everydistrictm-district-infobox-information">' + dataDistrictCopy + '</div></div>')
+
+                    // Find the corresponding district in the GeoJSON
                     for (var j = 0; j < json.features.length; j++)  {
                         var jsonDistrict = json.features[j].properties.NAME;
                         if (dataDistrict == jsonDistrict) {
@@ -165,9 +186,9 @@ $(window).on('load', function () {
         // d.properties contains the attributes (e.g. d.properties.name, d.properties.population)
         function clicked (d, i) {
             var mapInfoClass = d.properties.NAME.toLowerCase().replace(/ /g, '-')
-            if ($('.map-info .district.fl-' + mapInfoClass).length) {
-                $('.map-info .district').removeClass('active')
-                $('.map-info .district.fl-' + mapInfoClass).addClass('active')
+            if ($('.everydistrictm-district-infobox-' + mapInfoClass).length) {
+                $('.everydistrictm-district-infobox').removeClass('active')
+                $('.everydistrictm-district-infobox-' + mapInfoClass).addClass('active')
             }
         }
 
