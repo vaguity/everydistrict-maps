@@ -36,10 +36,6 @@ $(window).on('load', function () {
                 'scale': 0,
                 'center': [],
             },
-            'us': {
-                'scale': 1000,
-                'center': [],
-            }
         }
         // Split first two characters from mapID
         var mapState = mapID.substring(0, 2)
@@ -123,19 +119,26 @@ $(window).on('load', function () {
                 if (error) return console.log(error) // unknown error, check the console
 
                 for (var i = 0; i < data.length; i++) {
-                    // Grab State Name
-                    var dataState = data[i].State;
+                    // Grab district
+                    var dataDistrict = data[i].District;
 
                     // Grab data value
-                    var dataValue = data[i].Highlighted;
+                    var dataHighlighted = data[i].Highlighted;
+
+                    var dataStatus = data[i].Status;
+
+                    // Copy data to info boxes
+                    $('.district.fl-' + dataDistrict + ' .incumbent').text(data[i].Incumbent)
+                    $('.district.fl-' + dataDistrict + ' .ldi').text('LDI: ' + data[i].LDI)
 
                     // Find the corresponding state inside the GeoJSON
                     for (var j = 0; j < json.features.length; j++)  {
-                        var jsonState = json.features[j].properties.NAME;
-                        if (dataState == jsonState) {
+                        var jsonDistrict = json.features[j].properties.NAME;
+                        if (dataDistrict == jsonDistrict) {
 
                             // Copy the data value into the JSON
-                            json.features[j].properties.highlighted = dataValue;
+                            json.features[j].properties.highlighted = dataHighlighted;
+                            json.features[j].properties.status = dataStatus;
 
                             // Stop looking through the JSON
                             break;
@@ -150,7 +153,7 @@ $(window).on('load', function () {
                     .append('path')
                     .attr('d', path)
                     .style('fill', function (d) {
-                        return highlightCheck(d.properties.highlighted)
+                        return colorCheck(d.properties.status)
                     })
                     .on('click', clicked)
                     .on('mouseover', mouseovered)
@@ -162,12 +165,9 @@ $(window).on('load', function () {
         // d.properties contains the attributes (e.g. d.properties.name, d.properties.population)
         function clicked (d, i) {
             var mapInfoClass = d.properties.NAME.toLowerCase().replace(/ /g, '-')
-            if ($('.map-info .state.' + mapInfoClass).length) {
-                $('.map-info .state').removeClass('active')
-                $('.map-info .state.' + mapInfoClass).addClass('active')
-            }
-            else {
-                // $('.map-info .state.intro').addClass('active')
+            if ($('.map-info .district.fl-' + mapInfoClass).length) {
+                $('.map-info .district').removeClass('active')
+                $('.map-info .district.fl-' + mapInfoClass).addClass('active')
             }
         }
 
@@ -176,8 +176,8 @@ $(window).on('load', function () {
         }
 
         function mouseleft (d, i) {
-            d3.select(this).style('fill', function(d) {
-                return highlightCheck(d.properties.highlighted)
+            d3.select(this).style('fill', function (d) {
+                return colorCheck(d.properties.status)
             })
         }
     }
