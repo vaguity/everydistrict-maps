@@ -67,11 +67,13 @@ function everydistrictm_map_metabox() {
         'show_option_none'  => false,
         'default'           => 'us-states',
         'options'           => array(
-            'us'         => __( 'U.S.', 'cmb2' ),
-            'florida-senate'    => __( 'Florida Senate', 'cmb2'),
-            'michigan'          => __( 'Michigan', 'cmb2' ),
-            'ohio'              => __( 'Ohio', 'cmb2' ),
-            'pennsylvania'      => __( 'Pennsylvania', 'cmb2' ),
+            'us'                => __( 'U.S.', 'cmb2' ),
+            'az-house'          => __( 'Arizona House', 'cmb2' ),
+            'az-senate'         => __( 'Arizona Senate', 'cmb2' ),
+            'fl-senate'         => __( 'Florida Senate', 'cmb2'),
+            'mi-senate'         => __( 'Michigan Senate', 'cmb2' ),
+            'oh-senate'         => __( 'Ohio Senate', 'cmb2' ),
+            'pa-house'          => __( 'Pennsylvania House', 'cmb2' ),
         ),
     ) );
 
