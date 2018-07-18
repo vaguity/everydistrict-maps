@@ -9,11 +9,14 @@ function everydistrictm_map_template() {
     // Stringify the returned content
 
     $content = '<div class="everydistrictm-map-container everydistrictm-map-container-' . $everydistrictm_map_map . '">
-        <div id="everydistrictm-map" class="everydistrictm-map-' . $everydistrictm_map_map . '" data-map-id="' . $everydistrictm_map_map . '" data-map-data-file="' . $everydistrictm_map_data_file . '" data-map-geojson-file="' . plugin_dir_url( __FILE__ ) . 'src/geojson/' . $everydistrictm_map_map . '.geojson">(Loading map data.)</div>
+        <div id="everydistrictm-map" class="everydistrictm-map everydistrictm-map-' . $everydistrictm_map_map . '" data-map-id="' . $everydistrictm_map_map . '" data-map-data-file="' . $everydistrictm_map_data_file . '" data-map-geojson-file="' . plugin_dir_url( __FILE__ ) . 'src/geojson/' . $everydistrictm_map_map . '.geojson">(Loading map data.)</div>
         <script src="' . plugin_dir_url( __FILE__ ) . 'dist/js/everydistrict-maps.js"></script>';
 
     $content .= '</div>
-        <div class="everydistrictm-map-information"></div>
+        <div class="everydistrictm-map-information">
+            <div class="everydistrictm-district-infobox everydistrictm-district-infobox-0 active"><p>Click a district for more information.</p>
+            </div>
+        </div>
         <div class="everydistrictm-district-information">';
 
         // Loop through repeatable districts
@@ -25,8 +28,6 @@ function everydistrictm_map_template() {
         }
 
     $content .= '</div>';
-
-
 
     return $content;
 } ?>

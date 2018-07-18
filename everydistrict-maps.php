@@ -3,7 +3,7 @@
 Plugin Name: EveryDistrct Maps
 Plugin URI: https://github.com/vaguity/everydistrict-maps
 Description: Manages EveryDistrict maps and map-related content types.
-Version: 0.0.2
+Version: 0.0.3
 Author: H St. Strategy
 Author URI: http://www.hststrategy.com/
 */
@@ -16,6 +16,7 @@ add_action( 'cmb2_init', 'everydistrictm_district_metabox' );
 
 add_filter( 'the_content', 'everydistrictm_everydistrictm_map_content' );
 
+// TODO: Queue up JS on homepage to load U.S. map
 
 // Create map content type (district, state?)
 // Create template for map content type

@@ -1,0 +1,35 @@
+.everydistrictm-district-data {
+    display: none;
+}
+
+.everydistrictm-district-infobox {
+    display: none;
+    &.active {
+        display: block;
+    }
+}
+
+.everydistrictm-map {
+    @include breakpoint($breakpoint-medium) {
+        @include span(8 of 12);
+    }
+}
+
+.everydistrictm-map-information {
+    @include breakpoint($breakpoint-medium) {
+        @include span(4 of 12 last);
+    }
+}
+
+.everydistrictm-map {
+    path {
+        stroke-width: 1px;
+        stroke: white;
+        fill: $alt-blue;
+        cursor: pointer;
+    }
+
+    path:hover, path.highlighted {
+        fill: gold;
+    }
+}

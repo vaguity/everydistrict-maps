@@ -61,7 +61,6 @@ $(window).on('load', function () {
     }
 
     var drawMap = function (desktop) {
-        console.log('drawmap has run')
         var mapSettings = setMapSettings(mapID)
 
         if (desktop === true) {
@@ -104,8 +103,8 @@ $(window).on('load', function () {
             .attr('class', 'features');
 
         var color = d3.scale.linear()
-            .domain([0, 1])
-            .range(['steelBlue', 'orange']);
+            .domain([0, 1, 2, 3])
+            .range(['#dc143c', '#fa8072', 'yellow', '#408dd3']);
 
         var highlightCheck = function (highlighted) {
             if (typeof(highlighted) !== 'undefined') {
@@ -149,8 +148,11 @@ $(window).on('load', function () {
                         var dataDistrictCopy = $('.everydistrictm-district-data-' + dataDistrict + ' .everydistrictm-district-data-information').html()
                     }
 
-                    // TODO: Prevent this from creating three copies each time
-                    $('.everydistrictm-map-information').append('<div class="everydistrictm-district-infobox everydistrictm-district-infobox-' + dataDistrict + '"><h3 class="everydistrictm-district-infobox-name">' + mapName + ' District ' + dataDistrict + '</h3><ul><li class="everydistrictm-district-infobox-incumbent">' + data[i].Incumbent + '</li><li class="everydistrictm-district-infobox-ldi">' + data[i].LDI + '</li></ul><div class="everydistrictm-district-infobox-information">' + dataDistrictCopy + '</div></div>')
+                    if ($(document.getElementsByClassName('everydistrictm-district-infobox-' + dataDistrict)).length) {
+                    }
+                    else {
+                        $('.everydistrictm-map-information').append('<div class="everydistrictm-district-infobox everydistrictm-district-infobox-' + dataDistrict + '"><h3 class="everydistrictm-district-infobox-name">' + mapName + ' District ' + dataDistrict + '</h3><ul><li class="everydistrictm-district-infobox-incumbent">' + data[i].Incumbent + '</li><li class="everydistrictm-district-infobox-ldi">LDI: ' + data[i].LDI + '</li></ul><div class="everydistrictm-district-infobox-information">' + dataDistrictCopy + '</div></div>')
+                    }
 
                     // Find the corresponding district in the GeoJSON
                     for (var j = 0; j < json.features.length; j++)  {
@@ -185,6 +187,11 @@ $(window).on('load', function () {
         // Add optional onClick events for features here
         // d.properties contains the attributes (e.g. d.properties.name, d.properties.population)
         function clicked (d, i) {
+            d3.selectAll('path')
+                .style('fill', function (d) {
+                    return colorCheck(d.properties.status)
+                })
+            d3.select(this).style('fill', '#bbb')
             var mapInfoClass = d.properties.NAME.toLowerCase().replace(/ /g, '-')
             if ($('.everydistrictm-district-infobox-' + mapInfoClass).length) {
                 $('.everydistrictm-district-infobox').removeClass('active')
@@ -193,12 +200,18 @@ $(window).on('load', function () {
         }
 
         function mouseovered (d, i) {
-            d3.select(this).style('fill', 'gold')
+            d3.select(this).style({
+                'stroke-width': '2px',
+                'stroke': 'black',
+                'opacity': '0.8',
+            })
         }
 
         function mouseleft (d, i) {
-            d3.select(this).style('fill', function (d) {
-                return colorCheck(d.properties.status)
+            d3.select(this).style({
+                'stroke-width': '1px',
+                'stroke': 'white',
+                'opacity': '1',
             })
         }
     }
