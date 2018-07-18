@@ -46,14 +46,14 @@ District,LDI,Incumbent,Status,Highlighted
 45,12,D-Safe,3,0
 46,-2,R-Lean R,1,0
 47,-11,R-Safe,0,0
-48,0,D-Lean R,#N/A,#N/A
+48,0,D-Lean R,2,1
 49,12,R-Lean D,2,1
 50,11,D-Safe,3,0
 51,-1,R-Lean R,1,0
 52,-3,R-Lean R,1,0
 53,-2,R-Lean R,1,0
 54,-19,R-Safe,0,0
-55,-7,D-Lean R,#N/A,#N/A
+55,-7,D-Lean R,2,1
 56,-20,R-Safe,0,0
 57,-16,R-Safe,0,0
 58,0,R-Lean D,2,1
@@ -70,11 +70,11 @@ District,LDI,Incumbent,Status,Highlighted
 69,-32,R-Safe,0,0
 70,26,D-Safe,3,0
 71,5,D-Safe,3,0
-72,-2,D-Lean R,#N/A,#N/A
+72,-2,D-Lean R,2,1
 73,-7,R-Safe,0,0
 74,26,R-Lean D,2,1
 75,-16,R-Safe,0,0
-76,-8,D-Lean R,#N/A,#N/A
+76,-8,D-Lean R,2,1
 77,24,D-Safe,3,0
 78,-43,R-Safe,0,0
 79,-12,R-Safe,0,0
@@ -154,7 +154,7 @@ District,LDI,Incumbent,Status,Highlighted
 153,30,D-Safe,3,0
 154,51,D-Safe,3,0
 155,-4,R-Lean R,1,0
-156,-1,D-Lean R,#N/A,#N/A
+156,-1,D-Lean R,2,1
 157,5,R-Lean D,2,1
 158,-3,R-Lean R,1,0
 159,62,D-Safe,3,0

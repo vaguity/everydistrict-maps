@@ -44,12 +44,12 @@ $(window).on('load', function () {
                 'center': [-86.41580499999999,45.06094578377876],
             },
             'oh': {
-                'scale': 0,
-                'center': [],
+                'scale': 4046.6907399300744,
+                'center': [-82.669426,40.213922117042],
             },
             'pa': {
-                'scale': 0,
-                'center': [],
+                'scale': 5601.456908424744,
+                'center': [-77.6047035,41.0071639544236],
             },
         }
         // Split first two characters from mapID
