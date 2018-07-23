@@ -3,7 +3,7 @@
 Plugin Name: EveryDistrct Maps
 Plugin URI: https://github.com/vaguity/everydistrict-maps
 Description: Manages EveryDistrict maps and map-related content types.
-Version: 0.1.1
+Version: 0.1.2
 Author: H St. Strategy
 Author URI: http://www.hststrategy.com/
 */
@@ -135,7 +135,7 @@ function everydistrictm_everydistrictm_map_content( $content ) {
         include('single-everydistrictm_map.php');
 
         $map_content = everydistrictm_map_template();
-        $content = $content . $map_content;
+        $content = $map_content . $content;
     }
 
     return $content;

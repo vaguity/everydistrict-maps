@@ -1,5 +1,5 @@
-require('./js/lib/modernizr')
-require('./js/enquire-shim')
+// require('./js/lib/modernizr')
+// require('./js/enquire-shim')
 global.enquire = require('./js/lib/enquire')
 global.d3 = require('d3')
 require('./js/everydistrict-maps.js')

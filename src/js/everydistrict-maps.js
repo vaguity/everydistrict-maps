@@ -104,7 +104,7 @@ $(window).on('load', function () {
 
         var color = d3.scale.linear()
             .domain([0, 1, 2, 3])
-            .range(['#dc143c', '#fa8072', 'yellow', '#408dd3']);
+            .range(['#d13f44', '#fa8072', '#faf372', '#61bfe0']);
 
         var highlightCheck = function (highlighted) {
             if (typeof(highlighted) !== 'undefined') {
@@ -117,12 +117,9 @@ $(window).on('load', function () {
 
         var colorCheck = function (status) {
             if (typeof(status) !== 'undefined') {
-                // console.log(status)
-                // console.log(color(status))
                 return color(status)
             }
             else {
-                // console.log('fallback color')
                 return color(4)
             }
         }
@@ -191,7 +188,7 @@ $(window).on('load', function () {
                 .style('fill', function (d) {
                     return colorCheck(d.properties.status)
                 })
-            d3.select(this).style('fill', '#bbb')
+            d3.select(this).style('fill', '#faf032')
             var mapInfoClass = d.properties.NAME.toLowerCase().replace(/ /g, '-')
             if ($('.everydistrictm-district-infobox-' + mapInfoClass).length) {
                 $('.everydistrictm-district-infobox').removeClass('active')
@@ -201,16 +198,12 @@ $(window).on('load', function () {
 
         function mouseovered (d, i) {
             d3.select(this).style({
-                'stroke-width': '2px',
-                'stroke': 'black',
-                'opacity': '0.8',
+                'opacity': '0.7',
             })
         }
 
         function mouseleft (d, i) {
             d3.select(this).style({
-                'stroke-width': '1px',
-                'stroke': 'white',
                 'opacity': '1',
             })
         }
