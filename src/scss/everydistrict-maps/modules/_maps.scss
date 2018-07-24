@@ -27,6 +27,12 @@
 }
 
 .everydistrictm-map {
+    &.bordered {
+        border: 1px solid #ccc;
+    }
+}
+
+.everydistrictm-map {
     path {
         stroke-width: 1px;
         stroke: white;

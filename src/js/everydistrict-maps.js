@@ -102,6 +102,14 @@ $(window).on('load', function () {
         var features = svg.append('g')
             .attr('class', 'features');
 
+        //Create zoom/pan listener
+        //Change [1,Infinity] to adjust the min/max zoom scale
+        var zoom = d3.behavior.zoom()
+            .scaleExtent([1, 4])
+            .on('zoom', zoomed);
+
+        svg.call(zoom);
+
         var color = d3.scale.linear()
             .domain([0, 1, 2, 3])
             .range(['#d13f44', '#fa8072', '#faf372', '#61bfe0']);
@@ -166,6 +174,8 @@ $(window).on('load', function () {
                     }
                 }
 
+                // TODO: Allow zoom
+
                 // Create a path for each map feature in the data
                 features.selectAll('path')
                     .data(json.features)
@@ -206,6 +216,19 @@ $(window).on('load', function () {
             d3.select(this).style({
                 'opacity': '1',
             })
+        }
+
+        // Update map on zoom/pan
+        function zoomed () {
+            features.attr('transform', 'translate(' + zoom.translate() + ')scale(' + zoom.scale() + ')')
+                .selectAll('path').style('stroke-width', 1 / zoom.scale() + 'px' );
+            console.log(zoom.scale())
+            if (zoom.scale() > 1) {
+                $('.everydistrictm-map').addClass('bordered')
+            }
+            else {
+                $('.everydistrictm-map').removeClass('bordered')
+            }
         }
     }
 
