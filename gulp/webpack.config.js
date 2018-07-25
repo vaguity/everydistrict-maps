@@ -34,7 +34,6 @@ if (typeof isProduction !== 'undefined') {
 
 var entries = {
     'everydistrict-maps': srcDir + '/everydistrict-maps.js',
-    'everydistrict-maps-us': srcDir + '/everydistrict-maps-us.js',
 }
 
 var config = {

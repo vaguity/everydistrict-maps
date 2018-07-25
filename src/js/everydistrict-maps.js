@@ -1,5 +1,8 @@
 $(window).on('load', function () {
 
+    // Check if a map container exists on the page
+    if ($('#everydistrictm-map').length) {
+
     var MAP_NAMES = {
         'us': 'U.S.',
         'az-house': 'Arizona House',
@@ -31,6 +34,10 @@ $(window).on('load', function () {
             'center': [-111.93086650000001,34.215924556828945],
         }
         var mapSizes = {
+            'us': {
+                'scale': 730.2209486090715,
+                'center': [],
+            },
             'az': {
                 'scale': 4760.200189536459,
                 'center': [-111.93086650000001,34.215924556828945],
@@ -174,20 +181,35 @@ $(window).on('load', function () {
                     }
                 }
 
-                // TODO: Allow zoom
-
                 // Create a path for each map feature in the data
-                features.selectAll('path')
-                    .data(json.features)
-                    .enter()
-                    .append('path')
-                    .attr('d', path)
-                    .style('fill', function (d) {
-                        return colorCheck(d.properties.status)
-                    })
-                    .on('click', clicked)
-                    .on('mouseover', mouseovered)
-                    .on('mouseleave', mouseleft)
+
+                if (mapID === 'us') {
+                    features.selectAll('path')
+                        .data(json.features)
+                        .enter()
+                        .append('path')
+                        .attr('d', path)
+                        .style('fill', function (d) {
+                            return colorCheck(d.properties.highlighted)
+                        })
+                        .on('click', clicked)
+                        .on('mouseover', mouseovered)
+                        .on('mouseleave', mouseleft)
+                }
+                else {
+                    features.selectAll('path')
+                        .data(json.features)
+                        .enter()
+                        .append('path')
+                        .attr('d', path)
+                        .style('fill', function (d) {
+                            return colorCheck(d.properties.status)
+                        })
+                        .on('click', clicked)
+                        .on('mouseover', mouseovered)
+                        .on('mouseleave', mouseleft)
+                }
+
             });
         });
 
@@ -222,7 +244,6 @@ $(window).on('load', function () {
         function zoomed () {
             features.attr('transform', 'translate(' + zoom.translate() + ')scale(' + zoom.scale() + ')')
                 .selectAll('path').style('stroke-width', 1 / zoom.scale() + 'px' );
-            console.log(zoom.scale())
             if (zoom.scale() > 1) {
                 $('.everydistrictm-map').addClass('bordered')
             }
@@ -247,4 +268,7 @@ $(window).on('load', function () {
             drawMap(false)
         }
     })
+
+    }
+
 })
