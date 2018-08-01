@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: EveryDistrct Maps
+Plugin Name: EveryDistrict Maps
 Plugin URI: https://github.com/vaguity/everydistrict-maps
 Description: Manages EveryDistrict maps and map-related content types.
 Version: 0.1.2
