@@ -1,0 +1,114 @@
+<style>
+path {
+  stroke-width: 1px;
+  stroke: white;
+  fill: #61bfe0;
+  cursor: pointer;
+}
+
+path:hover, path.highlighted {
+  fill: #408dd3;
+}
+
+</style>
+
+<div id="everydistrictm-map-home" style="text-align: center;"></div>
+
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="https://everydistrict.us/wp-content/plugins/everydistrict-maps/src/js/lib/enquire.js"></script>
+
+<script>
+var buildMap = function(width, height, scale) {
+
+  // Reset container
+  document.getElementById('everydistrictm-map-home').innerHTML = '';
+
+  //Map projection
+  var projection = d3.geo.albersUsa()
+      .scale(scale)
+      .translate([width/2,height/2]) //translate to center the map in view
+
+  //Generate paths based on projection
+  var path = d3.geo.path()
+      .projection(projection);
+
+  //Create an SVG
+  var svg = d3.select("#everydistrictm-map-home").append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+  //Group for the map features
+  var features = svg.append("g")
+      .attr("class","features");
+
+  //Create zoom/pan listener
+  //Change [1,Infinity] to adjust the min/max zoom scale
+  // var zoom = d3.behavior.zoom()
+  //     .scaleExtent([1, Infinity])
+  //     .on("zoom",zoomed);
+
+  var colorCheck = function(name) {
+    if (name === 'Michigan' || name === 'Ohio' || name === 'Pennsylvania') {
+      return '#408dd3';
+    }
+    return '#61bfe0';
+  }
+
+  // svg.call(zoom);
+
+  d3.json("https://everydistrict.us/wp-content/uploads/2018/07/us.csv",function(error,geodata) {
+    if (error) return console.log(error); //unknown error, check the console
+
+    //Create a path for each map feature in the data
+    features.selectAll("path")
+      .data(geodata.features)
+      .enter()
+      .append("path")
+      .attr("d",path)
+      .style('fill', function (d) {
+          return colorCheck(d.properties.NAME)
+      })
+      .on("click",clicked);
+  });
+
+  // Add optional onClick events for features here
+  // d.properties contains the attributes (e.g. d.properties.name, d.properties.population)
+  function clicked(d, i) {
+    console.log(d.properties.NAME)
+    if (d.properties.NAME === 'Michigan') {
+      window.location.href = 'https://everydistrict.us/map/michigan-senate-map/';
+    }
+    else if (d.properties.NAME === 'Ohio') {
+      window.location.href = 'https://everydistrict.us/map/ohio-senate-map/';
+    }
+    else if (d.properties.NAME === 'Pennsylvania') {
+      window.location.href = 'https://everydistrict.us/map/ohio-senate-map/';
+    }
+  }
+
+  //Update map on zoom/pan
+  // function zoomed() {
+  //   features.attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")")
+  //       .selectAll("path").style("stroke-width", 1 / zoom.scale() + "px" );
+  // }
+};
+
+window.onload = function() {
+  buildMap(600, 350, 730.22);
+
+  // Responsive map dimensions
+  enquire.register('screen and (max-width: 480px)', {
+    match: function() {
+      buildMap(400, 250, 450);
+    },
+    unmatch: function() {
+      buildMap(600, 350, 730.22);
+    },
+    setup: function () {
+      buildMap(600, 350, 730.22);
+    },
+    deferSetup: false,
+  });
+};
+
+</script>
