@@ -7,10 +7,18 @@ $(window).on('load', function () {
         'us': 'U.S.',
         'az-house': 'Arizona House',
         'az-senate': 'Arizona Senate',
+        'ct-house': 'Connecticut House',
+        'ct-senate': 'Connecticut Senate',
         'fl-senate': 'Florida Senate',
         'mi-senate': 'Michigan Senate',
+        'mn-house': 'Minnesota House',
+        'mn-senate': 'Minnesota Senate',
+        'nc-house': 'North Carolina House',
+        'nc-senate': 'North Carolina Senate',
         'oh-senate': 'Ohio Senate',
         'pa-house': 'Pennsylvania House',
+        'wi-house': 'Wisconsin House',
+        'wi-senate': 'Wisconsin Senate',
     }
 
     // TODO: Set fallbacks for these initializing variables
@@ -42,6 +50,10 @@ $(window).on('load', function () {
                 'scale': 4760.200189536459,
                 'center': [-111.93086650000001,34.215924556828945],
             },
+            'ct': {
+                'scale': 16827.5525793261,
+                'center': [-72.7573845,41.5175784968548],
+            },
             'fl': {
                 'scale': 4000,
                 'center': [-83.83314999999999,27.810256323581516],
@@ -49,6 +61,14 @@ $(window).on('load', function () {
             'mi': {
                 'scale': 3433.9551403171313,
                 'center': [-86.41580499999999,45.06094578377876],
+            },
+            'mn': {
+                'scale': 2813.090181638652,
+                'center': [-93.365474,46.52146249906036],
+            },
+            'nc': {
+                'scale': 2457.0349701273753,
+                'center': [-79.891245,35.226829771185685],
             },
             'oh': {
                 'scale': 4046.6907399300744,
@@ -58,6 +78,10 @@ $(window).on('load', function () {
                 'scale': 5601.456908424744,
                 'center': [-77.6047035,41.0071639544236],
             },
+            'wi': {
+                'scale': 5047.395458192792,
+                'center': [-89.84676449999999,44.83194533508695],
+            }
         }
         // Split first two characters from mapID
         var mapState = mapID.substring(0, 2)

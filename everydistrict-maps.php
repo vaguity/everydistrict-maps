@@ -70,10 +70,18 @@ function everydistrictm_map_metabox() {
             'us'                => __( 'U.S.', 'cmb2' ),
             'az-house'          => __( 'Arizona House', 'cmb2' ),
             'az-senate'         => __( 'Arizona Senate', 'cmb2' ),
+            'ct-house'          => __( 'Connecticut House', 'cmb2' ),
+            'ct-senate'         => __( 'Connecticut Senate', 'cmb2' ),
             'fl-senate'         => __( 'Florida Senate', 'cmb2'),
             'mi-senate'         => __( 'Michigan Senate', 'cmb2' ),
+            'mn-house'          => __( 'Minnesota House', 'cmb2' ),
+            'mn-senate'         => __( 'Minnesota Senate', 'cmb2' ),
+            'nc-house'          => __( 'North Carolina House', 'cmb2' ),
+            'nc-senate'         => __( 'North Carolina Senate', 'cmb2' ),
             'oh-senate'         => __( 'Ohio Senate', 'cmb2' ),
             'pa-house'          => __( 'Pennsylvania House', 'cmb2' ),
+            'wi-house'          => __( 'Wisconsin House', 'cmb2' ),
+            'wi-senate'         => __( 'Wisconsin Senate', 'cmb2' ),
         ),
     ) );
 
@@ -114,11 +122,11 @@ function everydistrictm_district_metabox() {
         'type'  => 'text',
     ) );
 
-    $cmb->add_group_field( $group_field_id, array(
-        'name' => __( 'District Name', 'cmb2' ),
-        'id'   => 'district_name',
-        'type' => 'text',
-    ) );
+    // $cmb->add_group_field( $group_field_id, array(
+    //     'name' => __( 'District Name', 'cmb2' ),
+    //     'id'   => 'district_name',
+    //     'type' => 'text',
+    // ) );
 
     $cmb->add_group_field( $group_field_id, array(
         'name'  => __( 'District Information', 'cmb2' ),
