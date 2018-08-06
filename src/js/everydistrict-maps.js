@@ -171,9 +171,10 @@ $(window).on('load', function () {
 
                 for (var i = 0; i < data.length; i++) {
                     // Grab district
-                    var dataDistrict = data[i].District;
-                    if (typeof dataDistrict === 'string') {
-                        dataDistrict = dataDistrict.toLowerCase()
+                    var dataDistrict = data[i].District
+                    var dataDistrictLower = dataDistrict
+                    if (typeof dataDistrictLower === 'string') {
+                        dataDistrictLower = dataDistrict.toLowerCase()
                     }
 
                     // Grab data values
@@ -187,20 +188,22 @@ $(window).on('load', function () {
                         var dataDistrictCopy = $('.everydistrictm-district-data-' + dataDistrict + ' .everydistrictm-district-data-information').html()
                     }
 
-                    if ($(document.getElementsByClassName('everydistrictm-district-infobox-' + dataDistrict)).length) {
+                    // Prevent duplicate elements from being created
+                    if ($(document.getElementsByClassName('everydistrictm-district-infobox-' + dataDistrictLower)).length) {
                     }
                     else {
-                        $('.everydistrictm-map-information').append('<div class="everydistrictm-district-infobox everydistrictm-district-infobox-' + dataDistrict + '"><h3 class="everydistrictm-district-infobox-name">' + mapName + ' District ' + dataDistrict + '</h3><ul><li class="everydistrictm-district-infobox-incumbent">' + data[i].Incumbent + '</li><li class="everydistrictm-district-infobox-ldi">LDI: ' + data[i].LDI + '</li></ul><div class="everydistrictm-district-infobox-information">' + dataDistrictCopy + '</div></div>')
+                        // Create info elements
+                        $('.everydistrictm-map-information').append('<div class="everydistrictm-district-infobox everydistrictm-district-infobox-' + dataDistrictLower + '"><h3 class="everydistrictm-district-infobox-name">' + mapName + ' District ' + dataDistrict + '</h3><ul><li class="everydistrictm-district-infobox-incumbent">' + data[i].Incumbent + '</li><li class="everydistrictm-district-infobox-ldi">LDI: ' + data[i].LDI + '</li></ul><div class="everydistrictm-district-infobox-information">' + dataDistrictCopy + '</div></div>')
                     }
 
                     // Find the corresponding district in the GeoJSON
                     for (var j = 0; j < json.features.length; j++)  {
                         var jsonDistrict = json.features[j].properties.NAME
+                        var jsonDistrictLower = jsonDistrict
                         if (typeof jsonDistrict === 'string') {
-                            jsonDistrict = jsonDistrict.toLowerCase()
+                            jsonDistrictLower = jsonDistrict.toLowerCase()
                         }
-                        if (dataDistrict == jsonDistrict) {
-
+                        if (dataDistrictLower == jsonDistrictLower) {
                             // Copy the data value into the JSON
                             json.features[j].properties.highlighted = dataHighlighted
                             json.features[j].properties.status = dataStatus
