@@ -172,6 +172,9 @@ $(window).on('load', function () {
                 for (var i = 0; i < data.length; i++) {
                     // Grab district
                     var dataDistrict = data[i].District;
+                    if (typeof dataDistrict === 'string') {
+                        dataDistrict = dataDistrict.toLowerCase()
+                    }
 
                     // Grab data values
                     var dataHighlighted = data[i].Highlighted;
@@ -192,12 +195,15 @@ $(window).on('load', function () {
 
                     // Find the corresponding district in the GeoJSON
                     for (var j = 0; j < json.features.length; j++)  {
-                        var jsonDistrict = json.features[j].properties.NAME;
+                        var jsonDistrict = json.features[j].properties.NAME
+                        if (typeof jsonDistrict === 'string') {
+                            jsonDistrict = jsonDistrict.toLowerCase()
+                        }
                         if (dataDistrict == jsonDistrict) {
 
                             // Copy the data value into the JSON
-                            json.features[j].properties.highlighted = dataHighlighted;
-                            json.features[j].properties.status = dataStatus;
+                            json.features[j].properties.highlighted = dataHighlighted
+                            json.features[j].properties.status = dataStatus
 
                             // Stop looking through the JSON
                             break;
