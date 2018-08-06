@@ -67,7 +67,7 @@ $(window).on('load', function () {
                 'center': [-93.365474,46.52146249906036],
             },
             'nc': {
-                'scale': 2457.0349701273753,
+                'scale': 3500,
                 'center': [-79.891245,35.226829771185685],
             },
             'oh': {
@@ -95,7 +95,7 @@ $(window).on('load', function () {
         var mapSettings = setMapSettings(mapID)
 
         if (desktop === true) {
-            width = 800
+            width = 750
             height = 500
             scale = mapSettings['scale']
         }
