@@ -215,36 +215,20 @@ $(window).on('load', function () {
                 }
 
                 // Create a path for each map feature in the data
+                features.selectAll('path')
+                    .data(json.features)
+                    .enter()
+                    .append('path')
+                    .attr('d', path)
+                    .style('fill', function (d) {
+                        return colorCheck(d.properties.status)
+                    })
+                    .on('click', clicked)
+                    .on('mouseover', mouseovered)
+                    .on('mouseleave', mouseleft)
 
-                if (mapID === 'us') {
-                    features.selectAll('path')
-                        .data(json.features)
-                        .enter()
-                        .append('path')
-                        .attr('d', path)
-                        .style('fill', function (d) {
-                            return colorCheck(d.properties.highlighted)
-                        })
-                        .on('click', clicked)
-                        .on('mouseover', mouseovered)
-                        .on('mouseleave', mouseleft)
-                }
-                else {
-                    features.selectAll('path')
-                        .data(json.features)
-                        .enter()
-                        .append('path')
-                        .attr('d', path)
-                        .style('fill', function (d) {
-                            return colorCheck(d.properties.status)
-                        })
-                        .on('click', clicked)
-                        .on('mouseover', mouseovered)
-                        .on('mouseleave', mouseleft)
-                }
-
-            });
-        });
+            })
+        })
 
         // Add optional onClick events for features here
         // d.properties contains the attributes (e.g. d.properties.name, d.properties.population)
@@ -255,6 +239,7 @@ $(window).on('load', function () {
                 })
             d3.select(this).style('fill', '#faf032')
             var mapInfoClass = d.properties.NAME.toLowerCase().replace(/ /g, '-')
+            console.log(mapInfoClass)
             if ($('.everydistrictm-district-infobox-' + mapInfoClass).length) {
                 $('.everydistrictm-district-infobox').removeClass('active')
                 $('.everydistrictm-district-infobox-' + mapInfoClass).addClass('active')
