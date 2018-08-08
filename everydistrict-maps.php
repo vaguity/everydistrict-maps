@@ -93,6 +93,18 @@ function everydistrictm_map_metabox() {
             'type'  => 'text/csv',
         ),
     ) );
+    
+    $cmb->add_field( array(
+        'desc'          => __( 'Other Chamber Name' ),
+        'id'            => $prefix . 'other_chamber_name',
+        'type'          => 'text',
+    ) );
+
+    $cmb->add_field( array(
+        'desc'          => __( 'Other Chamber Link' ),
+        'id'            => $prefix . 'other_chamber_link',
+        'type'          => 'text',
+    ) );
 }
 
 function everydistrictm_district_metabox() {
