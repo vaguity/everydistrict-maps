@@ -42,6 +42,7 @@
 }
 
 .everydistrictm-map {
+    overflow: hidden;
     &.bordered {
         border: 1px solid #ccc;
     }
