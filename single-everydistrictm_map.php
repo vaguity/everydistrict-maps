@@ -5,6 +5,8 @@ function everydistrictm_map_template() {
     $everydistrictm_map_data_file = get_post_meta( get_the_ID(), '_everydistrictm_map_data_file', true );
     $everydistrictm_map_map = get_post_meta( get_the_ID(), '_everydistrictm_map_map', true );
     $everydistrictm_district_districts = get_post_meta( get_the_ID(), '_everydistrictm_district_repeat_group', true );
+    $everydistrictm_other_chamber_name = get_post_meta( get_the_ID(), '_everydistrictm_map_other_chamber_name', true );
+    $everydistrictm_other_chamber_link = get_post_meta( get_the_ID(), '_everydistrictm_map_other_chamber_link', true );
 
     // Stringify the returned content
 
@@ -25,6 +27,10 @@ function everydistrictm_map_template() {
                 <div class="everydistrictm-district-data-information">' . wpautop( $everydistrictm_district_district['district_information'] ) . '</div>
             </div>';
         }
+
+    if ( $everydistrictm_other_chamber_name && $everydistrictm_other_chamber_link ) {
+        $content .= '<p><a href="' . $everydistrictm_other_chamber_link . '">' . $everydistrictm_other_chamber_name . '</a> / ' get_the_title() . '</p>';
+    }
 
     $content .= '</div>';
 
