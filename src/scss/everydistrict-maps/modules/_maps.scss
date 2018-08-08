@@ -24,6 +24,10 @@
     }
 }
 
+.everydistrictm-district-information a {
+    color: #34aad9;
+}
+
 .everydistrictm-map {
     @include breakpoint($breakpoint-medium) {
         @include span(8 of 12);
