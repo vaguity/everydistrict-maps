@@ -29,7 +29,7 @@ function everydistrictm_map_template() {
         }
 
     if ( $everydistrictm_other_chamber_name && $everydistrictm_other_chamber_link ) {
-        $content .= '<p><a href="' . $everydistrictm_other_chamber_link . '">' . $everydistrictm_other_chamber_name . '</a> / ' get_the_title() . '</p>';
+        $content .= '<p><a href="' . $everydistrictm_other_chamber_link . '">' . $everydistrictm_other_chamber_name . '</a> / ' . get_the_title() . '</p>';
     }
 
     $content .= '</div>';
