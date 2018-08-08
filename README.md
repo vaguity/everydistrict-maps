@@ -4,9 +4,9 @@
 
 Requires global installs of Node/NPM and Gulp.
 
-`npm install`
-`gulp dependencies`
-`gulp build`
+`npm install`  
+`gulp dependencies`  
+`gulp build`  
 
 ## JavaScript build process
 
