@@ -13,7 +13,7 @@ require_once  __DIR__ . '/includes/cmb2/init.php';
 add_action( 'init', 'everydistrictm_create_post_type_everydistrictm_map' );
 add_action( 'cmb2_init', 'everydistrictm_map_metabox' );
 add_action( 'cmb2_init', 'everydistrictm_district_metabox' );
-add_action( 'wp_enqueue_scripts', 'everydistrictm_home_map' );
+add_action( 'wp_enqueue_scripts', 'everydistrictm_map_scripts' );
 add_filter( 'the_content', 'everydistrictm_everydistrictm_map_content' );
 
 // TODO: Queue up JS on homepage to load U.S. map
@@ -149,7 +149,8 @@ function everydistrictm_everydistrictm_map_content( $content ) {
     return $content;
 }
 
-function everydistrictm_home_map() {
+function everydistrictm_map_scripts() {
+    wp_enqueue_script( 'everydistrictm-map-settings', plugin_dir_url( __FILE__ ) . 'everydistrict-map-settings.js' );
     wp_enqueue_script( 'everydistrictm-map', plugin_dir_url( __FILE__ ) . 'dist/js/everydistrict-maps.js' );
 }
 
