@@ -46,6 +46,9 @@
     &.bordered {
         border: 1px solid #ccc;
     }
+    @include breakpoint($breakpoint-medium) {
+        max-height: 500px;
+    }
 }
 
 .everydistrictm-map {
