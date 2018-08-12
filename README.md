@@ -26,8 +26,5 @@ To add a map:
 
 1. Convert the shapefiles to GeoJSON and add the converted files to their respective `[src](src)` directories. (The GeoJSON file in `[src/geojson](src/geojson)` is the only converted file required, but I've saved the others for backup purposes in other directories.) The GeoJSON file should be named with the two-letter state postal code, then a hyphen followed by the chamber name (e.g., `az-house.geojson`).
 1. Retrieve the `center` and `scale` values needed to render the map effectively; starting values can be generated from the tool at [mapstarter.com](http://mapstarter.com/). After converting the shapefile, navigate to the "Download" tab and copy the values from the code below under the "//Map projection" comment. Take these values and add them to the `[everydistrict-map-settings.js](everydistrict-map-settings.js)` file.
-1. Add the chamber to the selection list in `[everydistrict-maps.php](everydistrict-maps.php)`. The array that creates the list is found under the section that starts with "Select map to use." The key should match the filename of the GeoJSON file (e.g., `az-house`):
-```
-  'az-house'          => __( 'Arizona House', 'cmb2' ),
-```
+1. Add the chamber to the selection list in `[everydistrict-maps.php](everydistrict-maps.php)`. The array that creates the list is found under the section that starts with "Select map to use." The key should match the filename of the GeoJSON file (e.g., `az-house`, with the full line reading: `'az-house'          => __( 'Arizona House', 'cmb2' ),`.
 1. After making all the above changes and committing them to the repo, download this repo as a zip file. You can either upload it directly to the WordPress site's `wp-content/plugins` directory via SFTP or delete the plugin on the live site and upload and re-activate it.
