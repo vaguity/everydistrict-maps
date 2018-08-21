@@ -274,8 +274,6 @@ class everydistrictm_national_map_widget extends WP_Widget {
             'wyoming'           => 'Wyoming',
         );
 
-        var_dump($instance);
-
         foreach ( $EVERYDISTRICTM_STATE_NAMES as $state_id => $state_name ) {
 
             $state_link = !empty( $instance[$state_id] ) ? $instance[$state_id] : '';
