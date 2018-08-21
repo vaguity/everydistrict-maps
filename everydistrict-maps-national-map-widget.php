@@ -94,7 +94,7 @@ class everydistrictm_national_map_widget extends WP_Widget {
         $active_states_links = '';
 
         foreach ( $instance as $state_id => $state_link ) {
-            if ( !empty ( $EVERYDISTRICTM_STATE_NAMES[$state_id] ) ) {
+            if ( !empty( $EVERYDISTRICTM_STATE_NAMES[$state_id] ) ) {
                 $active_states[$EVERYDISTRICTM_STATE_NAMES[$state_id]] = $state_link;
             }
         }
@@ -107,10 +107,10 @@ class everydistrictm_national_map_widget extends WP_Widget {
                 $active_states_color .= ' || ';
             }
             if ( $state_name != $first_active_state_key ) {
-                $active_states_links .= '\nelse ';
+                $active_states_links .= "\nelse ";
             }
             else {
-                $active_states_links .= '\n';
+                $active_states_links .= "\n";
             }
             $active_states_links .= 'if (d.properties.NAME === \'' . $state_name . '\') { window.location.href = \'https://everydistrict.us/map/michigan-senate-map/\'; }';
         } ?>
@@ -145,7 +145,7 @@ class everydistrictm_national_map_widget extends WP_Widget {
           //Map projection
           var projection = d3.geo.albersUsa()
               .scale(scale)
-              .translate([width/2,height/2]) //translate to center the map in view
+              .translate([width/2,height/2]); //translate to center the map in view
 
           //Generate paths based on projection
           var path = d3.geo.path()
@@ -160,12 +160,6 @@ class everydistrictm_national_map_widget extends WP_Widget {
           var features = svg.append("g")
               .attr("class","features");
 
-          //Create zoom/pan listener
-          //Change [1,Infinity] to adjust the min/max zoom scale
-          // var zoom = d3.behavior.zoom()
-          //     .scaleExtent([1, Infinity])
-          //     .on("zoom",zoomed);
-
           var colorCheck = function(name) {
             if (<?php echo $active_states_color; ?>) {
               return '#408dd3';
@@ -173,12 +167,10 @@ class everydistrictm_national_map_widget extends WP_Widget {
             return '#61bfe0';
           }
 
-          // svg.call(zoom);
-
           d3.json("https://everydistrict.us/wp-content/uploads/2018/07/us.csv",function(error,geodata) {
             if (error) return console.log(error); //unknown error, check the console
 
-            //Create a path for each map feature in the data
+            // Create a path for each map feature in the data
             features.selectAll("path")
               .data(geodata.features)
               .enter()
@@ -195,12 +187,6 @@ class everydistrictm_national_map_widget extends WP_Widget {
           function clicked(d, i) {
             <?php echo $active_states_links; ?>
           }
-
-          //Update map on zoom/pan
-          // function zoomed() {
-          //   features.attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")")
-          //       .selectAll("path").style("stroke-width", 1 / zoom.scale() + "px" );
-          // }
         };
 
         window.onload = function() {
