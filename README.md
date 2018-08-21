@@ -4,9 +4,9 @@
 
 Requires global installs of Node/NPM and Gulp.
 
-`npm install`  
-`gulp dependencies`  
-`gulp build`  
+`npm install`
+`gulp dependencies`
+`gulp build`
 
 ## JavaScript build process
 
@@ -28,3 +28,7 @@ To add a map:
 1. Retrieve the `center` and `scale` values needed to render the map effectively; starting values can be generated from the tool at [mapstarter.com](http://mapstarter.com/). After converting the shapefile, navigate to the "Download" tab and copy the values from the code below under the "//Map projection" comment. Take these values and add them to the `[everydistrict-map-settings.js](everydistrict-map-settings.js)` file.
 1. Add the chamber to the selection list in `[everydistrict-maps.php](everydistrict-maps.php)`. The array that creates the list is found under the section that starts with "Select map to use." The key should match the filename of the GeoJSON file (e.g., `az-house`, with the full line reading: `'az-house'          => __( 'Arizona House', 'cmb2' ),`.
 1. After making all the above changes and committing them to the repo, download this repo as a zip file. You can either upload it directly to the WordPress site's `wp-content/plugins` directory via SFTP or delete the plugin on the live site and upload and re-activate it.
+
+## Linking from home page map
+
+To highlight a state and link it to a map page, go to the Appearance -> Widgets menu in WordPress. The EveryDistrict Home Map widget area should have the EveryDistrict National Map Widget added to it. Open it to see the form, which includes all 50 states. If a state's text field has a link to a page, it will be highlighted and linked on the home page map.

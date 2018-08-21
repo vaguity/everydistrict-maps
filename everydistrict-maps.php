@@ -16,14 +16,10 @@ add_action( 'cmb2_init', 'everydistrictm_district_metabox' );
 add_action( 'wp_enqueue_scripts', 'everydistrictm_map_scripts' );
 add_filter( 'the_content', 'everydistrictm_everydistrictm_map_content' );
 
+// Include widget and widget area for national map on home page
 include( 'everydistrict-maps-national-map-widget.php' );
 
-// Create map content type (district, state?)
-// Create template for map content type
-// Create custom file upload field for each map
-// Figure out a way for the JS to point to
-// Create custom fields for each district
-
+// Create Map custom post type
 function everydistrictm_create_post_type_everydistrictm_map() {
     register_post_type( 'everydistrictm_map',
         array(
@@ -50,6 +46,7 @@ function everydistrictm_create_post_type_everydistrictm_map() {
     );
 }
 
+// Create custom fields for map settings
 function everydistrictm_map_metabox() {
     $prefix = '_everydistrictm_map_';
 
@@ -107,6 +104,7 @@ function everydistrictm_map_metabox() {
     ) );
 }
 
+// Create custom fields for districts
 function everydistrictm_district_metabox() {
     $prefix = '_everydistrictm_district_';
 
@@ -147,12 +145,13 @@ function everydistrictm_district_metabox() {
     ) );
 }
 
+// Display template partial for map content
 function everydistrictm_everydistrictm_map_content( $content ) {
     global $post;
 
     if ( is_single() && in_the_loop() && is_main_query() && get_post_type() === 'everydistrictm_map' ) {
 
-        include('single-everydistrictm_map.php');
+        include( 'single-everydistrictm_map.php' );
 
         $map_content = everydistrictm_map_template();
         $content = $map_content . $content;
@@ -161,6 +160,7 @@ function everydistrictm_everydistrictm_map_content( $content ) {
     return $content;
 }
 
+// Enqueue JS for maps
 function everydistrictm_map_scripts() {
     wp_enqueue_script( 'everydistrictm-map-settings', plugin_dir_url( __FILE__ ) . 'everydistrict-map-settings.js' );
     wp_enqueue_script( 'everydistrictm-map', plugin_dir_url( __FILE__ ) . 'dist/js/everydistrict-maps.js' );

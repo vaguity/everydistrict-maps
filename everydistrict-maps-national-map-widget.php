@@ -1,5 +1,4 @@
 <?php
-
 // Create widget area
 function everydistrictm_create_map_widget_area() {
 
@@ -126,7 +125,6 @@ class everydistrictm_national_map_widget extends WP_Widget {
         path:hover, path.highlighted {
           fill: #408dd3;
         }
-
         </style>
 
         <div id="everydistrictm-map-home" style="text-align: center;"></div>
@@ -367,16 +365,4 @@ class everydistrictm_national_map_widget extends WP_Widget {
         return $instance;
     }
 
-}
-
-/*
-
-output:
-
-
-
-
-
- */
-
-?>
+} ?>
