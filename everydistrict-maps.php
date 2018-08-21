@@ -16,7 +16,7 @@ add_action( 'cmb2_init', 'everydistrictm_district_metabox' );
 add_action( 'wp_enqueue_scripts', 'everydistrictm_map_scripts' );
 add_filter( 'the_content', 'everydistrictm_everydistrictm_map_content' );
 
-// TODO: Queue up JS on homepage to load U.S. map
+include( 'everydistrict-maps-national-map-widget.php' );
 
 // Create map content type (district, state?)
 // Create template for map content type
@@ -93,7 +93,7 @@ function everydistrictm_map_metabox() {
             'type'  => 'text/csv',
         ),
     ) );
-    
+
     $cmb->add_field( array(
         'desc'          => __( 'Other Chamber Name' ),
         'id'            => $prefix . 'other_chamber_name',
