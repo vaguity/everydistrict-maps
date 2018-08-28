@@ -111,7 +111,8 @@ class everydistrictm_national_map_widget extends WP_Widget {
             else {
                 $active_states_links .= "\n";
             }
-            $active_states_links .= 'if (d.properties.NAME === \'' . $state_name . '\') { window.location.href = \'https://everydistrict.us/map/michigan-senate-map/\'; }';
+            // Return the correct link here
+            $active_states_links .= 'if (d.properties.NAME === \'' . $state_name . '\') { window.location.href = \'' . $state_link . '\'; }';
         } ?>
 
         <style>
@@ -122,8 +123,8 @@ class everydistrictm_national_map_widget extends WP_Widget {
           cursor: pointer;
         }
 
-        path:hover, path.highlighted {
-          fill: #408dd3;
+        path:hover {
+          opacity: 0.8;
         }
         </style>
 
