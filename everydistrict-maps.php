@@ -75,6 +75,7 @@ function everydistrictm_map_metabox() {
             'mn-senate'         => __( 'Minnesota Senate', 'cmb2' ),
             'nc-house'          => __( 'North Carolina House', 'cmb2' ),
             'nc-senate'         => __( 'North Carolina Senate', 'cmb2' ),
+            'oh-house'          => __( 'Ohio House', 'cmb2' ),
             'oh-senate'         => __( 'Ohio Senate', 'cmb2' ),
             'pa-house'          => __( 'Pennsylvania House', 'cmb2' ),
             'wi-house'          => __( 'Wisconsin House', 'cmb2' ),
