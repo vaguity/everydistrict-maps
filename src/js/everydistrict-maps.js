@@ -5,6 +5,7 @@ $(window).on('load', function () {
 
     var MAP_NAMES = {
         'us': 'U.S.',
+        'al-house': 'Alabama House",
         'az-house': 'Arizona House',
         'az-senate': 'Arizona Senate',
         'ct-house': 'Connecticut House',
