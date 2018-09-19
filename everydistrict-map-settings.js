@@ -1,5 +1,4 @@
 var EVERYDISTRICT_MAP_SETTINGS = {
-
     'us': {
         'scale': 730.2209486090715,
         'center': [],
@@ -55,7 +54,6 @@ var EVERYDISTRICT_MAP_SETTINGS = {
     'ks': {
         'scale': 4375.873765006126,
         'center': [-98.32007850000001,38.51381833174138],
-
     },
     'ky': {
         'scale': 4293.489932273641,
@@ -81,7 +79,7 @@ var EVERYDISTRICT_MAP_SETTINGS = {
         'scale': 2813.090181638652,
         'center': [-93.365474,46.52146249906036],
     },
-   'mo': {
+    'mo': {
         'scale': 4892.042288246713,
         'center': [-92.4367735,38.3414451555652],
     },
