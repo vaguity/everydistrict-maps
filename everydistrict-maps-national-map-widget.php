@@ -131,7 +131,7 @@ class everydistrictm_national_map_widget extends WP_Widget {
         <div id="everydistrictm-map-home" style="text-align: center;"></div>
 
         <script src="https://d3js.org/d3.v3.min.js"></script>
-        <script type="text/javascript" src="https://everydistrict.us/wp-content/plugins/everydistrict-maps/src/js/lib/enquire.js"></script>
+        <script type="text/javascript" src="https://www.everydistrict.us/wp-content/plugins/everydistrict-maps/src/js/lib/enquire.js"></script>
 
         <script>
         var buildMap = function(width, height, scale) {
@@ -166,7 +166,7 @@ class everydistrictm_national_map_widget extends WP_Widget {
             return '#61bfe0';
           }
 
-          d3.json("https://everydistrict.us/wp-content/uploads/2018/07/us.csv",function(error,geodata) {
+          d3.json("https://www.everydistrict.us/wp-content/uploads/2018/07/us.csv",function(error,geodata) {
             if (error) return console.log(error); //unknown error, check the console
 
             // Create a path for each map feature in the data
