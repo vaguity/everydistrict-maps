@@ -4,8 +4,8 @@
 
 Requires global installs of Node/NPM and Gulp.
 
-`npm install`  
-`gulp dependencies`  
+`npm install`
+`gulp dependencies`
 `gulp build`
 
 ## JavaScript build process
@@ -32,3 +32,9 @@ To add a map:
 ## Linking from home page map
 
 To highlight a state and link it to a map page, go to the Appearance -> Widgets menu in WordPress. The EveryDistrict Home Map widget area should have the EveryDistrict National Map Widget added to it. Open it to see the form, which includes all 50 states. If a state's text field has a link to a page, it will be highlighted and linked on the home page map.
+
+## Tools
+
+[Mapstarter](http://mapstarter.com/)
+[mapshaper](https://mapshaper.org/)
+[geojson.io](http://geojson.io)
