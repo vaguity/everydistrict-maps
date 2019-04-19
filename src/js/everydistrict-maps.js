@@ -249,7 +249,7 @@ $(window).on('load', function () {
                 })
             d3.select(this).style('fill', '#faf032')
             var mapInfoClass = d.properties.NAME.toLowerCase().replace(/ /g, '-')
-            console.log(mapInfoClass)
+            // console.log(mapInfoClass)
             if ($('.everydistrictm-district-infobox-' + mapInfoClass).length) {
                 $('.everydistrictm-district-infobox').removeClass('active')
                 $('.everydistrictm-district-infobox-' + mapInfoClass).addClass('active')
