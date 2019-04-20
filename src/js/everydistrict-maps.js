@@ -173,6 +173,12 @@ $(window).on('load', function () {
             }
         }
 
+        var parseDistrictName = function (districtName) {
+            var newDistrictName = districtName
+            newDistrictName = newDistrictName.toLowerCase().replace(/ /g, '-').replace(/&/g, 'and').replace(/,/g, '').replace(/\(/g, '').replace(/\)/g, '').replace(/\./g, '')
+            return newDistrictName
+        }
+
         d3.csv(mapDataFile, function(error, data) {
             if (error) return console.log(error) // unknown error, check the console
 
@@ -184,7 +190,7 @@ $(window).on('load', function () {
                     var dataDistrict = data[i].District
                     var dataDistrictLower = dataDistrict
                     if (typeof dataDistrictLower === 'string') {
-                        dataDistrictLower = dataDistrict.toLowerCase().replace(/ /g, '-').replace(/&/g, 'and').replace(/,/g, '')
+                        dataDistrictLower = parseDistrictName(dataDistrictLower)
                     }
 
                     // Grab data values
@@ -211,7 +217,7 @@ $(window).on('load', function () {
                         var jsonDistrict = json.features[j].properties.NAME
                         var jsonDistrictLower = jsonDistrict
                         if (typeof jsonDistrict === 'string') {
-                            jsonDistrictLower = jsonDistrict.toLowerCase().replace(/ /g, '-').replace(/&/g, 'and').replace(/,/g, '')
+                            jsonDistrictLower = parseDistrictName(jsonDistrictLower)
                         }
                         if (dataDistrictLower == jsonDistrictLower) {
                             // Copy the data value into the JSON
@@ -249,8 +255,9 @@ $(window).on('load', function () {
                 })
             d3.select(this).style('fill', '#faf032')
             // TODO: Add check for NAME property
-            var mapInfoClass = d.properties.NAME.toLowerCase().replace(/ /g, '-').replace(/&/g, 'and').replace(/,/g, '')
-            console.log('District Name: ' + mapInfoClass)
+            // console.log(d.properties.NAME)
+            var mapInfoClass = parseDistrictName(d.properties.NAME)
+            // console.log('District Name: ' + mapInfoClass)
             if ($('.everydistrictm-district-infobox-' + mapInfoClass).length) {
                 $('.everydistrictm-district-infobox').removeClass('active')
                 $('.everydistrictm-district-infobox-' + mapInfoClass).addClass('active')
@@ -285,8 +292,10 @@ $(window).on('load', function () {
         }
     }
 
-    drawMap(false)
+    // TODO: Check if it's necessary to load the map first
+    // drawMap(false)
 
+    // TODO: This enquire call runs the function multiple times
     enquire.register('screen and (min-width: 980px)', {
         deferSetup: true,
         setup: function () {
