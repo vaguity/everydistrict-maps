@@ -156,7 +156,7 @@ var EVERYDISTRICT_MAP_SETTINGS = {
         'center': [-77.6047035,41.0071639544236],
     },
     'ri': {
-        'scale': 12000,
+        'scale': 24000,
         'center': [-71.491671,41.58404204093345],
     },
     'sc': {
