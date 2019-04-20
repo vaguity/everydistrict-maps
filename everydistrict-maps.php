@@ -3,7 +3,7 @@
 Plugin Name: EveryDistrict Maps
 Plugin URI: https://github.com/vaguity/everydistrict-maps
 Description: Manages EveryDistrict maps and map-related content types.
-Version: 1.2.2
+Version: 1.3.0
 Author: H St. Strategy
 Author URI: http://www.hststrategy.com/
 */
