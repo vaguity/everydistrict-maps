@@ -184,7 +184,7 @@ $(window).on('load', function () {
                     var dataDistrict = data[i].District
                     var dataDistrictLower = dataDistrict
                     if (typeof dataDistrictLower === 'string') {
-                        dataDistrictLower = dataDistrict.toLowerCase()
+                        dataDistrictLower = dataDistrict.toLowerCase().replace(/ /g, '-').replace(/&/g, 'and').replace(/,/g, '')
                     }
 
                     // Grab data values
@@ -194,8 +194,8 @@ $(window).on('load', function () {
                     // Get copy from page element
                     var dataDistrictCopy = ''
 
-                    if ($('.everydistrictm-district-data-' + dataDistrict + ' .everydistrictm-district-data-information').length) {
-                        var dataDistrictCopy = $('.everydistrictm-district-data-' + dataDistrict + ' .everydistrictm-district-data-information').html()
+                    if ($('.everydistrictm-district-data-' + dataDistrictLower + ' .everydistrictm-district-data-information').length) {
+                        var dataDistrictCopy = $('.everydistrictm-district-data-' + dataDistrictLower + ' .everydistrictm-district-data-information').html()
                     }
 
                     // Prevent duplicate elements from being created
@@ -211,7 +211,7 @@ $(window).on('load', function () {
                         var jsonDistrict = json.features[j].properties.NAME
                         var jsonDistrictLower = jsonDistrict
                         if (typeof jsonDistrict === 'string') {
-                            jsonDistrictLower = jsonDistrict.toLowerCase()
+                            jsonDistrictLower = jsonDistrict.toLowerCase().replace(/ /g, '-').replace(/&/g, 'and').replace(/,/g, '')
                         }
                         if (dataDistrictLower == jsonDistrictLower) {
                             // Copy the data value into the JSON
@@ -249,8 +249,7 @@ $(window).on('load', function () {
                 })
             d3.select(this).style('fill', '#faf032')
             // TODO: Add check for NAME property
-            console.log(d.properties)
-            var mapInfoClass = d.properties.NAME.toLowerCase().replace(/ /g, '-')
+            var mapInfoClass = d.properties.NAME.toLowerCase().replace(/ /g, '-').replace(/&/g, 'and').replace(/,/g, '')
             console.log('District Name: ' + mapInfoClass)
             if ($('.everydistrictm-district-infobox-' + mapInfoClass).length) {
                 $('.everydistrictm-district-infobox').removeClass('active')
