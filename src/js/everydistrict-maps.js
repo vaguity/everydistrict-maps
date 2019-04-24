@@ -293,15 +293,14 @@ $(window).on('load', function () {
     }
 
     // TODO: Check if it's necessary to load the map first
-    // drawMap(false)
+    drawMap(false)
 
     // TODO: This enquire call runs the function multiple times
     enquire.register('screen and (min-width: 980px)', {
         deferSetup: true,
-        setup: function () {
-            // Map dimensions for desktop, in pixels
-            drawMap(true)
-        },
+        // setup: function () {
+        //     drawMap(true)
+        // },
         match: function () {
             drawMap(true)
         },
