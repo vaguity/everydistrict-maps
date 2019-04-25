@@ -174,6 +174,9 @@ $(window).on('load', function () {
         }
 
         var parseDistrictName = function (districtName) {
+            if (typeof districtName === 'number') {
+                districtName = districtName.toString()
+            }
             var newDistrictName = districtName
             newDistrictName = newDistrictName.toLowerCase().replace(/ /g, '-').replace(/&/g, 'and').replace(/,/g, '').replace(/\(/g, '').replace(/\)/g, '').replace(/\./g, '')
             return newDistrictName
@@ -255,9 +258,7 @@ $(window).on('load', function () {
                 })
             d3.select(this).style('fill', '#faf032')
             // TODO: Add check for NAME property
-            // console.log(d.properties.NAME)
             var mapInfoClass = parseDistrictName(d.properties.NAME)
-            // console.log('District Name: ' + mapInfoClass)
             if ($('.everydistrictm-district-infobox-' + mapInfoClass).length) {
                 $('.everydistrictm-district-infobox').removeClass('active')
                 $('.everydistrictm-district-infobox-' + mapInfoClass).addClass('active')
